@@ -1,0 +1,62 @@
+service: proyIndra
+
+useDotenv: true
+
+provider:
+  name: aws
+  runtime: nodejs18.x
+
+  iam:
+    role:
+      statements:
+        - Effect: Allow
+          Action:
+            - "dynamodb:PutItem"
+            - "dynamodb:GetItem"
+            - "dynamodb:DeleteItem"
+            - "dynamodb:Scan"
+          Resource:
+            - { "Fn::GetAtt": ["ClientTable", "Arn"] }
+
+#custom:
+
+#  esbuild:
+#    bundle: true
+#    minify: true
+#    exclude:
+#      - aws-sdk
+
+functions:
+  createClient:
+    handler: src/handler/createClientHandler.handler
+    events:
+      - httpApi:
+          path: /client
+          method: POST
+  getClient:
+    handler: src/handler/getClientHandler.handler
+    events:
+      - httpApi:
+          path: /client/{id}
+          method: GET
+
+plugins:
+#  - serverless-esbuild
+  - serverless-plugin-typescript
+  - serverless-offline
+
+resources:
+  Resources:
+    ClientTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: ClientTable
+        ProvisionedThroughput:
+          ReadCapacityUnits: 1
+          WriteCapacityUnits: 1
+        AttributeDefinitions:
+          - AttributeName: clientID
+            AttributeType: S
+        KeySchema:
+          - AttributeName: clientID
+            KeyType: HASH
