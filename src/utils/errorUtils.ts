@@ -16,13 +16,13 @@ interface ErrorResponse {
 
 export const handleError = (e: unknown): ErrorResponse => {
     if (yup.ValidationError.isError(e)) {
-        return apiResponseUtils(HttpStatusEnum.BAD_REQUEST, JSON.stringify({
+        return apiResponseUtils(HttpStatusEnum.BAD_REQUEST, {
             errors: e.errors,
-        })) as ErrorResponse;
+        }) as ErrorResponse;
     }
 
     if (e instanceof SyntaxError) {
-        return apiResponseUtils(HttpStatusEnum.BAD_REQUEST, JSON.stringify({ error: `invalid request body format : "${e.message}"` })) as ErrorResponse;
+        return apiResponseUtils(HttpStatusEnum.BAD_REQUEST, { error: `invalid request body format : "${e.message}"` }) as ErrorResponse;
     }
 
     if (e instanceof HttpError) {
