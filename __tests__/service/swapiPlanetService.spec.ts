@@ -18,31 +18,25 @@ describe('SwapiPlanetService', () => {
   })
 
   test('should get translated Swapi planet data', async () => {
-    // Arrange
     const mockSwapiData = {
       name: 'Tatooine',
       rotation_period: '23',
-      population: '200000',
-      // ... Rest of the Swapi data fields
+      population: '200000'
     }
 
     const mockTranslatedData = {
       planetName: 'Tatooine',
       rotationPeriod: '23',
-      population: '200000',
-      // ... Rest of the translated data fields
+      population: '200000'
     }
 
     const axiosGetMock = jest.spyOn(axios, 'get').mockResolvedValue({
       data: mockSwapiData,
-    })
+    });
+    (translateKeys as jest.Mock).mockReturnValue(mockTranslatedData)
 
-    ;(translateKeys as jest.Mock).mockReturnValue(mockTranslatedData)
-
-    // Act
     const result = await swapiPlanetService.getSwapiPlanet()
 
-    // Assert
     expect(axiosGetMock).toHaveBeenCalledWith(
       'https://swapi.py4e.com/api/planets/1/'
     )
@@ -51,12 +45,9 @@ describe('SwapiPlanetService', () => {
   })
 
   test('should throw an error when getting Swapi planet data', async () => {
-    // Arrange
     const mockError = new Error('Internal Server Error')
 
     jest.spyOn(axios, 'get').mockRejectedValueOnce(mockError)
-
-    // Act & Assert
     await expect(swapiPlanetService.getSwapiPlanet()).rejects.toThrow(mockError)
   })
 })

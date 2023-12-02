@@ -13,18 +13,8 @@ provider:
           Action:
             - 'dynamodb:PutItem'
             - 'dynamodb:GetItem'
-            - 'dynamodb:DeleteItem'
-            - 'dynamodb:Scan'
           Resource:
             - { 'Fn::GetAtt': ['ClientTable', 'Arn'] }
-
-#custom:
-
-#  esbuild:
-#    bundle: true
-#    minify: true
-#    exclude:
-#      - aws-sdk
 
 functions:
   createClient:
@@ -47,7 +37,6 @@ functions:
           method: GET
 
 plugins:
-  #  - serverless-esbuild
   - serverless-plugin-typescript
   - serverless-offline
 

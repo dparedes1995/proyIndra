@@ -5,12 +5,24 @@ import { getItem, putItem } from '../gateway/dynamoGateway'
 import { ClientEntity } from '../entities/clientEntity'
 import { HttpStatusEnum } from '../infrastructure/enums/httpStatusEnum'
 import { clientSchema } from '../utils/utils'
+import { Tables } from '../infrastructure/Tables'
 
-const tableName = 'ClientTable'
+const tableName = Tables.CLIENT_TABLE
 
+/**
+ * Implementation of the client service interface.
+ * Provides operations to create and retrieve clients.
+ * @implements {ClientServiceInterface}
+ */
 export class ClientService implements ClientServiceInterface {
+  /**
+   * Creates a new client in the database.
+   * @param {Record<string, unknown>} reqBody - Request body containing client information.
+   * @returns {Promise<ClientEntity>} - Promise resolving with the created client entity.
+   * @throws {HttpError} - HTTP error if validation fails or there is an issue with the database.
+   */
   public async createClient(
-    reqBody: Record<string, unknown>
+      reqBody: Record<string, unknown>
   ): Promise<ClientEntity> {
     await clientSchema.validate(reqBody, { abortEarly: false })
 
@@ -27,6 +39,12 @@ export class ClientService implements ClientServiceInterface {
     return client
   }
 
+  /**
+   * Gets the entity of a client by its ID.
+   * @param {string} id - ID of the client to retrieve.
+   * @returns {Promise<ClientEntity>} - Promise resolving with the client entity.
+   * @throws {HttpError} - HTTP error if the client is not found in the database.
+   */
   public async getClientById(id: string): Promise<ClientEntity> {
     const entity: ClientEntity | undefined = await getItem<ClientEntity>({
       TableName: tableName,
