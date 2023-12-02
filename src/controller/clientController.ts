@@ -8,6 +8,12 @@ import { get } from 'lodash'
 
 const clientService: ClientService = new ClientService()
 
+/**
+ * Creates a client controller.
+ *
+ * @param event - The API Gateway proxy event.
+ * @returns A promise that resolves to an API Gateway proxy result.
+ */
 export const createClientController = async (
   event: APIGatewayProxyEvent
 ): Promise<APIGatewayProxyResult> => {
@@ -24,6 +30,12 @@ export const createClientController = async (
   }
 }
 
+/**
+ * Retrieves a client by ID.
+ *
+ * @param event - The API Gateway event object.
+ * @returns A promise that resolves to an API Gateway proxy result.
+ */
 export const getClientController = async (
   event: APIGatewayProxyEvent
 ): Promise<APIGatewayProxyResult> => {

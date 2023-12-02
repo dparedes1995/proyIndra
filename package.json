@@ -3,6 +3,15 @@
   "version": "1.0.0",
   "description": "Development project In Typescript with connection AWS",
   "main": "index.js",
+  "scripts": {
+    "dev": "serverless offline",
+    "lint": "npx eslint --ext .ts .",
+    "deploy": "serverless deploy",
+    "test": "jest",
+    "validate": "npm run lint && npm run test",
+    "format": "prettier --write .",
+    "format:changed": "prettier --write \"**/*.{ts,tsx}\" --list-different"
+  },
   "husky": {
     "hooks": {
       "pre-commit": "lint-staged"
@@ -14,25 +23,16 @@
       "git add"
     ]
   },
-  "scripts": {
-    "dev": "serverless offline",
-    "lint": "npx eslint --ext .ts .",
-    "deploy": "serverless deploy",
-    "test": "jest",
-    "validate": "npm run lint && npm run test",
-    "format": "prettier --write .",
-    "format:changed": "prettier --write \"**/*.{ts,tsx}\" --list-different"
-  },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "@babel/preset-env": "7.18.2",
     "@babel/preset-typescript": "7.17.12",
-    "@types/aws-lambda": "8.10.129",
-    "@types/jest": "29.5.10",
     "@typescript-eslint/eslint-plugin": "6.13.1",
     "@typescript-eslint/parser": "6.13.1",
+    "@types/aws-lambda": "8.10.129",
+    "@types/jest": "29.5.10",
     "aws-sdk": "2.1509.0",
     "aws-sdk-mock": "5.8.0",
     "eslint": "8.54.0",
@@ -53,8 +53,8 @@
   "dependencies": {
     "@types/uuid": "8.3.4",
     "aws-lambda": "1.0.7",
-    "axios": "^1.6.2",
-    "lodash": "^4.17.21",
+    "axios": "1.6.2",
+    "lodash": "4.17.21",
     "uuid": "9.0.1",
     "yup": "1.3.2"
   }

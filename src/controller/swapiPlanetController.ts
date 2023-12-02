@@ -5,6 +5,10 @@ import { handleError } from '../utils/errorUtils'
 import { SwapiPlanetService } from '../service/swapiPlanetService'
 
 const swapiPlanetService: SwapiPlanetService = new SwapiPlanetService()
+/**
+ * Retrieves a SWAPI planet and returns the result as an APIGatewayProxyResult.
+ * @returns A Promise that resolves to an APIGatewayProxyResult.
+ */
 export const swapiPlanetController =
   async (): Promise<APIGatewayProxyResult> => {
     try {

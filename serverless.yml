@@ -11,10 +11,10 @@ provider:
       statements:
         - Effect: Allow
           Action:
-            - 'dynamodb:PutItem'
-            - 'dynamodb:GetItem'
+            - dynamodb:PutItem
+            - dynamodb:GetItem
           Resource:
-            - { 'Fn::GetAtt': ['ClientTable', 'Arn'] }
+            - Fn::GetAtt: [ClientTable, Arn]
 
 functions:
   createClient:
@@ -47,8 +47,8 @@ resources:
       Properties:
         TableName: ClientTable
         ProvisionedThroughput:
-          ReadCapacityUnits: 1
-          WriteCapacityUnits: 1
+          ReadCapacityUnits: 5
+          WriteCapacityUnits: 5
         AttributeDefinitions:
           - AttributeName: clientID
             AttributeType: S

@@ -17,22 +17,28 @@ interface ErrorResponse {
   body: string
 }
 
-export const handleError = (e: unknown): ErrorResponse => {
-  if (yup.ValidationError.isError(e)) {
+/**
+ * Handles errors and returns an ErrorResponse.
+ * @param error - The error object.
+ * @returns The ErrorResponse object.
+ * @throws The original error if it doesn't match any of the conditions.
+ */
+export const handleError = (error: unknown): ErrorResponse => {
+  if (yup.ValidationError.isError(error)) {
     return apiResponseUtils(HttpStatusEnum.BAD_REQUEST, {
-      errors: e.errors,
+      errors: error.errors,
     }) as ErrorResponse
   }
 
-  if (e instanceof SyntaxError) {
+  if (error instanceof SyntaxError) {
     return apiResponseUtils(HttpStatusEnum.BAD_REQUEST, {
-      error: `invalid request body format : "${e.message}"`,
+      error: `Invalid request body format: "${error.message}"`,
     }) as ErrorResponse
   }
 
-  if (e instanceof HttpError) {
-    return apiResponseUtils(e.statusCode, e.message) as ErrorResponse
+  if (error instanceof HttpError) {
+    return apiResponseUtils(error.statusCode, error.message) as ErrorResponse
   }
 
-  throw e
+  throw error
 }

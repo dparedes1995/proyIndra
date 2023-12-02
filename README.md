@@ -1,6 +1,7 @@
 # Project Indra
 
 Development project In Typescript with connection AWS
+
 ## Scripts
 
 - `deploy`: Deploy the project using Serverless.
@@ -18,22 +19,28 @@ Use the package manager [npm](https://www.npmjs.com/) to install the dependencie
 ```bash
 npm install
 ```
+
 ## Usage
 
 # Run linting and tests.
+
 ```bash
 npm run validate
 ```
+
 # Run the project locally using Serverless Offline.
+
 ```bash
 npm run dev
 ```
+
 # Configure archive .env .
+
 AWS_ACCESS_KEY_ID=AWS_ACCESS_KEY_ID
 AWS_SECRET_ACCESS_KEY=AWS_SECRET_ACCESS_KEY
 
 # Deploy the project using Serverless.
+
 ```bash
 npm run deploy
 ```
-

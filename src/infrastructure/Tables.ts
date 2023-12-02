@@ -1,3 +1,3 @@
 export const Tables = {
-    CLIENT_TABLE: "ClientTable",
-};
+  CLIENT_TABLE: 'ClientTable',
+}

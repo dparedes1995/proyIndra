@@ -1,15 +1,12 @@
-export const translateKeys = <T>(
+export function translateKeys<T>(
   inputObject: Record<string, T>,
   translationMap: Record<string, string>
-): Record<string, T> => {
+): Record<string, T> {
   const translatedObject: Record<string, T> = {}
 
   for (const key in inputObject) {
-    if (key in translationMap) {
-      translatedObject[translationMap[key]] = inputObject[key]
-    } else {
-      translatedObject[key] = inputObject[key]
-    }
+    const translatedKey = translationMap[key] || key
+    translatedObject[translatedKey] = inputObject[key]
   }
 
   return translatedObject

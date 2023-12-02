@@ -3,5 +3,5 @@ module.exports = {
   testEnvironment: 'node',
   collectCoverage: true,
   coverageReporters: ['text', 'cobertura'],
-  coveragePathIgnorePatterns: ['/utils/', '/gateway/'],
+  coveragePathIgnorePatterns: ['/utils/', '/gateway/', '/.build/'],
 }

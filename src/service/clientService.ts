@@ -1,4 +1,4 @@
-import { v4 } from 'uuid'
+import { v4 as uuidv4 } from 'uuid'
 import { HttpError } from '../utils/errorUtils'
 import { ClientServiceInterface } from '../interfaces/clientInterfaces'
 import { getItem, putItem } from '../gateway/dynamoGateway'
@@ -14,6 +14,9 @@ const tableName = Tables.CLIENT_TABLE
  * Provides operations to create and retrieve clients.
  * @implements {ClientServiceInterface}
  */
+/**
+ * Service class for managing clients.
+ */
 export class ClientService implements ClientServiceInterface {
   /**
    * Creates a new client in the database.
@@ -22,13 +25,13 @@ export class ClientService implements ClientServiceInterface {
    * @throws {HttpError} - HTTP error if validation fails or there is an issue with the database.
    */
   public async createClient(
-      reqBody: Record<string, unknown>
+    reqBody: Record<string, unknown>
   ): Promise<ClientEntity> {
     await clientSchema.validate(reqBody, { abortEarly: false })
 
     const client: ClientEntity = {
       ...reqBody,
-      clientID: v4(),
+      clientID: uuidv4(),
     }
 
     await putItem({

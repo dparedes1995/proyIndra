@@ -1,10 +1,12 @@
-import { HttpStatusEnum } from '../infrastructure/enums/httpStatusEnum'
 import { APIGatewayProxyResult } from 'aws-lambda'
 import { ErrorResponse } from 'aws-sdk/clients/migrationhubrefactorspaces'
 
+import { HttpStatusEnum } from '../infrastructure/enums/httpStatusEnum'
+
 const headers = {
-  'content-type': 'application/json',
+  'Content-Type': 'application/json',
 }
+
 export const apiResponseUtils = <T>(
   statusCode: HttpStatusEnum,
   body: T
