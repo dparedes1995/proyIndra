@@ -11,12 +11,12 @@ provider:
       statements:
         - Effect: Allow
           Action:
-            - "dynamodb:PutItem"
-            - "dynamodb:GetItem"
-            - "dynamodb:DeleteItem"
-            - "dynamodb:Scan"
+            - 'dynamodb:PutItem'
+            - 'dynamodb:GetItem'
+            - 'dynamodb:DeleteItem'
+            - 'dynamodb:Scan'
           Resource:
-            - { "Fn::GetAtt": ["ClientTable", "Arn"] }
+            - { 'Fn::GetAtt': ['ClientTable', 'Arn'] }
 
 #custom:
 
@@ -39,9 +39,15 @@ functions:
       - httpApi:
           path: /client/{id}
           method: GET
+  getSwapiPlanet:
+    handler: src/handler/getSwapiPlanetHandler.handler
+    events:
+      - httpApi:
+          path: /getSwapiPlanet
+          method: GET
 
 plugins:
-#  - serverless-esbuild
+  #  - serverless-esbuild
   - serverless-plugin-typescript
   - serverless-offline
 
