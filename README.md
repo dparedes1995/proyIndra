@@ -28,6 +28,9 @@ npm run validate
 ```bash
 npm run dev
 ```
+# Configure archive .env .
+AWS_ACCESS_KEY_ID=AWS_ACCESS_KEY_ID
+AWS_SECRET_ACCESS_KEY=AWS_SECRET_ACCESS_KEY
 
 # Deploy the project using Serverless.
 ```bash
