@@ -18,19 +18,19 @@ provider:
 
 functions:
   createClient:
-    handler: src/handler/createClientHandler.handler
+    handler: src/handlers/createClientHandler.handler
     events:
       - httpApi:
           path: /client
           method: POST
   getClient:
-    handler: src/handler/getClientHandler.handler
+    handler: src/handlers/getClientHandler.handler
     events:
       - httpApi:
           path: /client/{id}
           method: GET
   getSwapiPlanet:
-    handler: src/handler/getSwapiPlanetHandler.handler
+    handler: src/handlers/getSwapiPlanetHandler.handler
     events:
       - httpApi:
           path: /getSwapiPlanet

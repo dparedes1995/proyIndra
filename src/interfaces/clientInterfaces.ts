@@ -1,4 +1,4 @@
-import { ClientEntity } from '../entities/clientEntity'
+import { ClientEntity } from '../models/clientEntity'
 
 /**
  * Interface for the ClientService.

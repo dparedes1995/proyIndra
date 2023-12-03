@@ -3,7 +3,7 @@ import { APIGatewayProxyResult } from 'aws-lambda'
 import { HttpStatusEnum } from '../../src/infrastructure/enums/httpStatusEnum'
 import { swapiPlanetController } from '../../src/controller/swapiPlanetController'
 import { apiResponseUtils } from '../../src/utils/apiResponseUtils'
-import { SwapiPlanet } from '../../src/entities/swapiPlanet'
+import { SwapiPlanet } from '../../src/models/swapiPlanet'
 jest.mock('../../src/service/swapiPlanetService')
 jest.mock('../../src/utils/apiResponseUtils')
 const mockGetSwapiPlanet = jest.fn()

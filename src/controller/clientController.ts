@@ -1,7 +1,7 @@
 import { APIGatewayProxyEvent, APIGatewayProxyResult } from 'aws-lambda'
 import { ClientService } from '../service/clientService'
 import { handleError } from '../utils/errorUtils'
-import { ClientEntity } from '../entities/clientEntity'
+import { ClientEntity } from '../models/clientEntity'
 import { apiResponseUtils } from '../utils/apiResponseUtils'
 import { HttpStatusEnum } from '../infrastructure/enums/httpStatusEnum'
 import { get } from 'lodash'

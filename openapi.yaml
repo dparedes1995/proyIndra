@@ -1,0 +1,151 @@
+openapi: 3.0.0
+info:
+  title: ProyIndra API
+  version: 1.0.0
+servers:
+  - url: https://kc0v4def81.execute-api.us-east-1.amazonaws.com
+paths:
+  /client:
+    post:
+      summary: Crea un nuevo cliente
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: David
+                lastName:
+                  type: string
+                  example: Paredes
+                email:
+                  type: string
+                  example: dparedes.cibertec@gmail.com
+                phone:
+                  type: string
+                  example: 1234567
+                address:
+                  type: string
+                  example: los halcones
+      responses:
+        '200':
+          description: Cliente creado
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  name:
+                    type: string
+                    example: David
+                  lastName:
+                    type: string
+                    example: Paredes
+                  email:
+                    type: string
+                    example: dparedes.cibertec@gmail.com
+                  phone:
+                    type: string
+                    example: 1234567
+                  address:
+                    type: string
+                    example: los halcones
+                  clientID:
+                    type: string
+                    example: aef9b7c6-a3e3-4604-b5ce-64d4a35f1720
+  /client/{id}:
+    get:
+      summary: Obtiene un cliente por ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            example: aef9b7c6-a3e3-4604-b5ce-64d4a35f1720
+      responses:
+        '200':
+          description: Cliente obtenido
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  name:
+                    type: string
+                    example: David
+                  lastName:
+                    type: string
+                    example: Paredes
+                  email:
+                    type: string
+                    example: dparedes.cibertec@gmail.com
+                  phone:
+                    type: string
+                    example: 1234567
+                  address:
+                    type: string
+                    example: los halcones
+                  clientID:
+                    type: string
+                    example: aef9b7c6-a3e3-4604-b5ce-64d4a35f1720
+  /getSwapiPlanet:
+    get:
+      summary: Obtiene información de un planeta de la API de SWAPI
+      responses:
+        '200':
+          description: Información del planeta obtenida
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  nombre:
+                    type: string
+                    example: Tatooine
+                  periodo_rotacion:
+                    type: string
+                    example: 23
+                  periodo_orbital:
+                    type: string
+                    example: 304
+                  diametro:
+                    type: string
+                    example: 10465
+                  clima:
+                    type: string
+                    example: arid
+                  gravedad:
+                    type: string
+                    example: 1 standard
+                  terreno:
+                    type: string
+                    example: desert
+                  superficie_agua:
+                    type: string
+                    example: 1
+                  poblacion:
+                    type: string
+                    example: 200000
+                  residentes:
+                    type: array
+                    items:
+                      type: string
+                      example: https://swapi.py4e.com/api/people/1/
+                  peliculas:
+                    type: array
+                    items:
+                      type: string
+                      example: https://swapi.py4e.com/api/films/1/
+                  creado:
+                    type: string
+                    example: 2014-12-09T13:50:49.641000Z
+                  editado:
+                    type: string
+                    example: 2014-12-20T20:58:18.411000Z
+                  url:
+                    type: string
+                    example: https://swapi.py4e.com/api/planets/1/

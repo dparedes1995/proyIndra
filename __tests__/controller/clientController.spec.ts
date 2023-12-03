@@ -1,5 +1,5 @@
 import { APIGatewayProxyEvent, APIGatewayProxyResult } from 'aws-lambda'
-import { ClientEntity } from '../../src/entities/clientEntity'
+import { ClientEntity } from '../../src/models/clientEntity'
 import { HttpStatusEnum } from '../../src/infrastructure/enums/httpStatusEnum'
 import mocked = jest.mocked
 import { ClientService } from '../../src/service/clientService'
