@@ -1,24 +1,20 @@
-import { ClientEntity } from '../models/clientEntity'
+import { Client } from '../models/client'
 
 /**
  * Interface for the ClientService.
  */
-export interface ClientServiceInterface {
+export interface ClientInterface {
   /**
    * Creates a client.
    * @param reqBody - The request body.
    * @returns A promise that resolves to a ClientEntity.
    */
-  createClient(reqBody: Record<string, unknown>): Promise<ClientEntity>
+  createClient(reqBody: Record<string, unknown>): Promise<Client>
 
   /**
    * Retrieves a client by its ID.
    * @param id - The ID of the client.
    * @returns A promise that resolves to a ClientEntity.
    */
-  getClientById(id: string): Promise<ClientEntity>
-}
-export interface ClientServiceInterface {
-  createClient(reqBody: Record<string, unknown>): Promise<ClientEntity>
-  getClientById(id: string): Promise<ClientEntity>
+  getClientById(id: string): Promise<Client>
 }

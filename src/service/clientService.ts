@@ -2,7 +2,7 @@ import { v4 as uuidv4 } from 'uuid'
 import { HttpError } from '../utils/errorUtils'
 import { ClientServiceInterface } from '../interfaces/clientInterfaces'
 import { getItem, putItem } from '../gateway/dynamoGateway'
-import { ClientEntity } from '../models/clientEntity'
+import { Client } from '../models/client'
 import { HttpStatusEnum } from '../infrastructure/enums/httpStatusEnum'
 import { clientSchema } from '../utils/utils'
 import { Tables } from '../infrastructure/Tables'
@@ -21,15 +21,15 @@ export class ClientService implements ClientServiceInterface {
   /**
    * Creates a new client in the database.
    * @param {Record<string, unknown>} reqBody - Request body containing client information.
-   * @returns {Promise<ClientEntity>} - Promise resolving with the created client entity.
+   * @returns {Promise<Client>} - Promise resolving with the created client entity.
    * @throws {HttpError} - HTTP error if validation fails or there is an issue with the database.
    */
   public async createClient(
     reqBody: Record<string, unknown>
-  ): Promise<ClientEntity> {
+  ): Promise<Client> {
     await clientSchema.validate(reqBody, { abortEarly: false })
 
-    const client: ClientEntity = {
+    const client: Client = {
       ...reqBody,
       clientID: uuidv4(),
     }
@@ -45,11 +45,11 @@ export class ClientService implements ClientServiceInterface {
   /**
    * Gets the entity of a client by its ID.
    * @param {string} id - ID of the client to retrieve.
-   * @returns {Promise<ClientEntity>} - Promise resolving with the client entity.
+   * @returns {Promise<Client>} - Promise resolving with the client entity.
    * @throws {HttpError} - HTTP error if the client is not found in the database.
    */
-  public async getClientById(id: string): Promise<ClientEntity> {
-    const entity: ClientEntity | undefined = await getItem<ClientEntity>({
+  public async getClientById(id: string): Promise<Client> {
+    const entity: Client | undefined = await getItem<Client>({
       TableName: tableName,
       Key: {
         clientID: id,

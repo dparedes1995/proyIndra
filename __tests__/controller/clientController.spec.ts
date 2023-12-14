@@ -1,5 +1,5 @@
 import { APIGatewayProxyEvent, APIGatewayProxyResult } from 'aws-lambda'
-import { ClientEntity } from '../../src/models/clientEntity'
+import { Client } from '../../src/models/client'
 import { HttpStatusEnum } from '../../src/infrastructure/enums/httpStatusEnum'
 import mocked = jest.mocked
 import { ClientService } from '../../src/service/clientService'
@@ -15,7 +15,7 @@ jest.mock('../../src/utils/apiResponseUtils')
 
 describe('createClientController', () => {
   let mockEvent: APIGatewayProxyEvent
-  let mockClient: ClientEntity
+  let mockClient: Client
   let mockApiResponse: APIGatewayProxyResult
 
   beforeEach(() => {
@@ -131,7 +131,7 @@ describe('createClientController', () => {
 
 describe('getClientController', () => {
   let mockEvent: APIGatewayProxyEvent
-  let mockClient: ClientEntity
+  let mockClient: Client
   let mockApiResponse: APIGatewayProxyResult
 
   beforeEach(() => {

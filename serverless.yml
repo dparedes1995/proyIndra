@@ -4,7 +4,7 @@ useDotenv: true
 
 provider:
   name: aws
-  runtime: nodejs18.x
+  runtime: nodejs16.x
 
   iam:
     role:
@@ -15,6 +15,14 @@ provider:
             - dynamodb:GetItem
           Resource:
             - Fn::GetAtt: [ClientTable, Arn]
+
+custom:
+  esbuild:
+    bundle: true
+    minify: true
+    sourcemap: true
+    target: 'node16'
+    external: []
 
 functions:
   createClient:
@@ -37,7 +45,7 @@ functions:
           method: GET
 
 plugins:
-  - serverless-plugin-typescript
+  - serverless-esbuild
   - serverless-offline
 
 resources:

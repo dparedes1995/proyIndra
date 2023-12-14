@@ -3,8 +3,9 @@ import { apiResponseUtils } from '../utils/apiResponseUtils'
 import { HttpStatusEnum } from '../infrastructure/enums/httpStatusEnum'
 import { handleError } from '../utils/errorUtils'
 import { SwapiPlanetService } from '../service/swapiPlanetService'
+import { SwapiPlanetInterfaces } from '../interfaces/swapiPlanetInterfaces'
 
-const swapiPlanetService: SwapiPlanetService = new SwapiPlanetService()
+const swapiPlanetService: SwapiPlanetInterfaces = new SwapiPlanetService()
 /**
  * Retrieves a SWAPI planet and returns the result as an APIGatewayProxyResult.
  * @returns A Promise that resolves to an APIGatewayProxyResult.

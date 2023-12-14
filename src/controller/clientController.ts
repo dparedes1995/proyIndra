@@ -1,12 +1,13 @@
 import { APIGatewayProxyEvent, APIGatewayProxyResult } from 'aws-lambda'
 import { ClientService } from '../service/clientService'
 import { handleError } from '../utils/errorUtils'
-import { ClientEntity } from '../models/clientEntity'
+import { Client } from '../models/client'
 import { apiResponseUtils } from '../utils/apiResponseUtils'
 import { HttpStatusEnum } from '../infrastructure/enums/httpStatusEnum'
 import { get } from 'lodash'
+import { ClientInterface } from '../interfaces/clientInterfaces'
 
-const clientService: ClientService = new ClientService()
+const clientService: ClientInterface = new ClientService();
 
 /**
  * Creates a client controller.
@@ -19,7 +20,7 @@ export const createClientController = async (
 ): Promise<APIGatewayProxyResult> => {
   try {
     const reqBody = JSON.parse(event.body as string)
-    const client: ClientEntity = await clientService.createClient(reqBody)
+    const client: Client = await clientService.createClient(reqBody)
 
     return apiResponseUtils(
       HttpStatusEnum.CREATED,
@@ -40,7 +41,7 @@ export const getClientController = async (
   event: APIGatewayProxyEvent
 ): Promise<APIGatewayProxyResult> => {
   try {
-    const client: ClientEntity = await clientService.getClientById(
+    const client: Client = await clientService.getClientById(
       get(event.pathParameters, 'id') as string
     )
 
